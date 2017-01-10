@@ -1,3 +1,4 @@
 *.pyc
 EPFLogs
 EPFSnapshot.json
+.virtualenv
