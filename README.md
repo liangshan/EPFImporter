@@ -13,6 +13,12 @@ https://www.apple.com/itunes/affiliates/resources/documentation/epfimporter.html
 This version has been modified to run cleanly with MySQL 5.6 and the EPF data
 as provided by Apple in 2014.
 
+## Install
+
+```python
+pip install -r requirements.txt
+```
+
 ## Known Issue
 
 + use utf8mb4 will cause row size issue on a few columns, by updating the row size will fix it

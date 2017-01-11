@@ -1,1 +1,1 @@
--e git+ssh://git@github.com:farcepest/MySQLdb1.git#egg=MySQLdb
+-e git+https://github.com/farcepest/MySQLdb1.git#egg=MySQLdb
