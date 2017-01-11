@@ -381,8 +381,9 @@ class Ingester(object):
             except MySQLdb.Warning, e:
                 LOGGER.warning(str(e))
             except MySQLdb.IntegrityError, e:
-            #This is likely a primary key constraint violation; should only be hit if skipKeyViolators is False
+                # This is likely a primary key constraint violation; should only be hit if skipKeyViolators is False
                 LOGGER.error("Error %d: %s", e.args[0], e.args[1])
+
             self.lastRecordIngested = self.parser.latestRecordNum
             recCheck = self._checkProgress()
             if recCheck:

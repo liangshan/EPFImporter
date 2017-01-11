@@ -250,13 +250,21 @@ class Parser(object):
         if (rowString):
             self.latestRecordNum += 1 #update the record counter
             rec = self.splitRow(rowString)
-            rec = rec[:len(self.columnNames)] #if there are more data records than column names,
-            #trim any surplus records via a slice
+            # if there are more values than columns, it's likely an unescaped separator
+            if len(rec) > len(self.columnNames):
+                return None
 
             #replace empty strings with NULL
             for i in range(len(rec)):
                 val = rec[i]
                 rec[i] = ("NULL" if val == "" else val)
+
+            # Incorrect integer value: '\x14\x14\x05\x07\x15\x15' for column 'download_size'")
+            if 'download_size' in self.columnNames:
+                try:
+                    rec[-1] = int(rec[-1])
+                except:
+                    rec[-1] = "NULL"
 
             #massage dates into MySQL-compatible format.
             #most date values look like '2009 06 21'; some are '2005-09-06-00:00:00-Etc/GMT'
